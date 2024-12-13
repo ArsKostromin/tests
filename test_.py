@@ -1,10 +1,11 @@
 import pytest
 from datetime import datetime
-from console import Task, TaskManager
+from models import Task
+from services import TaskService
 import os
 
 def test_task_initialization():
-    task = Task("Test Task", "Description", "2024-12-31", "Высокий", "Не выполнена")
+    task = Task("Test Task", "Description", "2024-12-31", "высокий", "не выполнена")
     assert task.title == "Test Task"
     assert task.description == "Description"
     assert task.due_date == datetime(2024, 12, 31).date()

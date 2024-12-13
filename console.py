@@ -1,9 +1,10 @@
 import json
 from typing import List, Dict, Optional
 from datetime import datetime
+from pydantic import BaseModel, Field, EmailStr, ConfigDict
 
 
-class Task:
+class Task(BaseModel):
     def __init__(self, title: str, description: str, due_date: str, priority: str, status: str): #Инициализация 
         self.id = id(self)
         self.title = title
