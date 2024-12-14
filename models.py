@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Field, validator
+from pydantic import BaseModel, Field, field_validator
 from datetime import datetime, date
 from typing import Literal
 
@@ -11,11 +11,9 @@ class Task(BaseModel):
     priority: Literal["низкий", "средний", "выскоий"] = Field("Средний", description='Приоритет задачи')
     status: Literal["не выполнено", "выполнено"] = Field('не выполнено', description="Статус задачи")
 
-    # Валидатор с pre=True для предварительной обработки
-    @validator("due_date", pre=True)
+    #mode='before обозначает валидацию до обработки данных.
+    @field_validator("due_date", mode="before")
     def parse_due_date(cls, value: str):
-        if isinstance(value, date):  # Если уже объект date, возвращаем его
-            return value
         try:
             # Преобразуем строку в дату
             return datetime.strptime(value, "%Y-%m-%d").date()

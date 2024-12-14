@@ -27,4 +27,4 @@ class JSONRepository(AbstractRepository):
         
     def save(self, tasks: List[Task]) -> None:
         with open(self.file_path, "w", encoding="utf-8") as file:
-            json.dump([task.dict() for task in tasks], file, ensure_ascii=False, indent=4, default=str)
+            json.dump([task.model_dump() for task in tasks], file, ensure_ascii=False, indent=4, default=str)
