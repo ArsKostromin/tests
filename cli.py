@@ -18,9 +18,8 @@ def main():
         choice = input("Выберите действие: ")
         
         if choice == "1":
-            tasks = service.get_all_tasks()
-            for task in tasks:
-                print(task)
+            service.get_all_tasks()
+
 
         elif choice == "2":
             title = input("Название: ")

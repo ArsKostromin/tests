@@ -12,7 +12,11 @@ class TaskService:
         self.repository.save(self.tasks)
         
     def get_all_tasks(self) -> List[Task]:
-        return self.tasks
+        if self.tasks:
+         for task in self.tasks:
+            print(f"ID: {task.id}", f"| Название: {task.title}", f"| Описание: {task.description}", f"| Срок выполнения: {task.due_date.strftime('%Y-%m-%d')}", f"| Приоритет: {task.priority}", f"| Статус: {task.status}")
+        else:
+            print("Задачи не найдены.")
     
     def find_tasks(self, id: Optional[int] = None, title: Optional[str] = None, description: Optional[str] = None, due_date: Optional[str] = None):
         results = [
